@@ -14,7 +14,7 @@ document.body.onmouseup = () => (mouseDown = false);
 //Mapping vars to constants
 const colorChange = document.getElementById('colorSelection');
 const colorButton = document.getElementById('colorModeBtn');
-const rainbowButton = document.getElementById('rainbowModeBtn');
+const randomButton = document.getElementById('randomColorModeBtn');
 const eraser = document.getElementById('eraserBtn');
 const clear = document.getElementById('clearBtn');
 const gridSize = document.getElementById('sizeValue');
@@ -22,7 +22,7 @@ const gridSizeSlider = document.getElementById('sizeSlider');
 
 colorChange.oninput = event => setCurrentColor(event.target.value);
 colorButton.onclick = () => setCurrentMode('color');
-rainbowButton.onclick = () => setCurrentMode('rainbow');
+randomButton.onclick = () => setCurrentMode('random');
 eraser.onclick = () => setCurrentMode('eraser');
 clear.onclick = () => reload();
 gridSize.onmousemove = event => setCurrentSize(event.target.value);
@@ -75,7 +75,7 @@ function setupGrid(size) {
 
 function changeColor(event) {
     if (event.type === 'mouseover' && !mouseDown) return
-    if (currentMode === 'rainbow') {
+    if (currentMode === 'random') {
         const randomR = Math.floor(Math.random() * 256)
         const randomG = Math.floor(Math.random() * 256)
         const randomB = Math.floor(Math.random() * 256)
@@ -88,16 +88,16 @@ function changeColor(event) {
 }
 
 function activateButton(newMode) {
-    if (currentMode === 'rainbow') {
-      rainbowButton.classList.remove('active')
+    if (currentMode === 'random') {
+        randomButton.classList.remove('active')
     } else if (currentMode === 'color') {
       colorButton.classList.remove('active')
     } else if (currentMode === 'eraser') {
       eraser.classList.remove('active')
     }
   
-    if (newMode === 'rainbow') {
-        rainbowButton.classList.add('active')
+    if (newMode === 'random') {
+        randomButton.classList.add('active')
     } else if (newMode === 'color') {
         colorButton.classList.add('active')
     } else if (newMode === 'eraser') {
