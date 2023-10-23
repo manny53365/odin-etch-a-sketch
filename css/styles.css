@@ -8,15 +8,8 @@ h1 {
     font-size: 4rem;
 }
 
-/* footer {
-    margin-top: 2%;
-} */
-
 .container-grid {
     display: grid;
-    /* flex-direction: row;
-    align-items: center;
-    justify-content: center; */
     margin: auto;
     width: 500px;
     height: 500px;
