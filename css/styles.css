@@ -20,6 +20,7 @@ button {
     font-weight: bold;
     font-family: 'Roboto', sans-serif;
     background-color: white;
+    border-radius: 10px;
 }
 
 input {
@@ -45,6 +46,12 @@ footer {
     justify-content: center;
     width: 25%;
     gap: 15px;
+}
+
+.active {
+    background-color: black;
+    color: white;
+    border: 5px solid white;
 }
 
 #colorSelection {
