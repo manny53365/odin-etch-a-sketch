@@ -1,13 +1,21 @@
 const defaultGridSize = 16;
+const defaultGridColor = '#333333';
+const defaultGridMode = 'color';
 
 let currentSize = defaultGridSize
-const grid = document.getElementById('container-grid')
+let currentColor = defaultGridColor;
+let currentMode = defaultGridMode;
+const grid = document.getElementById('container-grid');
 
 let mouseDown = false;
 
 const setCurrentSize = (newSize) => {
     currentSize = newSize
 };
+
+let setcurrentColor = (newColor) => {
+    currentColor = newColor;
+}
 
 function setupGrid(size) {
     grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`
