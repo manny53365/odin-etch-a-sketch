@@ -2,3 +2,22 @@
     margin: 0;
     padding: 0;
 }
+
+h1 {
+    text-align: center;
+    font-size: 4rem;
+}
+
+footer {
+    margin-top: 2%;
+}
+
+.container-grid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 2% auto;
+    width: 500px;
+    height: 500px;
+}
