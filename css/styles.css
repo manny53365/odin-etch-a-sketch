@@ -8,9 +8,25 @@ h1 {
     font-size: 4rem;
 }
 
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    
+}
+
+.user-settings {
+    display: flex;
+    flex-direction: column;
+}
+
+.color-input {
+    border-radius: 20px;
+}
+
 .container-grid {
     display: grid;
-    margin: auto;
     width: 500px;
     height: 500px;
 }
