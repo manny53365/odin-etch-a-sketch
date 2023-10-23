@@ -8,10 +8,11 @@ let currentMode = defaultGridMode;
 const grid = document.getElementById('container-grid');
 
 let mouseDown = false;
-document.body.onmousedown = () => (mouseDown = true);
-document.body.onmouseup = () => (mouseDown = false);
 
-//Mapping vars to constants
+document.body.addEventListener('mousedown', () => mouseDown = true);
+document.body.addEventListener('mouseup', () => mouseDown = false);
+
+// Mapping vars to constants
 const colorChange = document.getElementById('colorSelection');
 const colorButton = document.getElementById('colorModeBtn');
 const randomButton = document.getElementById('randomColorModeBtn');
@@ -20,40 +21,51 @@ const clear = document.getElementById('clearBtn');
 const gridSize = document.getElementById('sizeValue');
 const gridSizeSlider = document.getElementById('sizeSlider');
 
-colorChange.oninput = event => setCurrentColor(event.target.value);
-colorButton.onclick = () => setCurrentMode('color');
-randomButton.onclick = () => setCurrentMode('random');
-eraser.onclick = () => setCurrentMode('eraser');
-clear.onclick = () => reload();
-gridSize.onmousemove = event => setCurrentSize(event.target.value);
-gridSizeSlider.onchange = event => changeGrideSize(event.target.value);
+const modeButtonMap = {
+    'random': randomButton,
+    'color': colorButton,
+    'eraser': eraser
+};
 
-const setCurrentSize = (newSize) => {
+colorChange.addEventListener('input', event => setCurrentColor(event.target.value));
+colorButton.addEventListener('click', () => setCurrentMode('color'));
+randomButton.addEventListener('click', () => setCurrentMode('random'));
+eraser.addEventListener('click', () => setCurrentMode('eraser'));
+clear.addEventListener('click', reloadGrid);
+gridSize.addEventListener('mousemove', event => setCurrentSize(event.target.value));
+gridSizeSlider.addEventListener('change', event => changeGridSize(event.target.value));
+
+const setCurrentSize = newSize => {
     currentSize = newSize;
 };
 
-let setCurrentColor = (newColor) => {
+const setCurrentColor = newColor => {
     currentColor = newColor;
 }
 
-let setCurrentMode = (newMode) => {
+const setCurrentMode = newMode => {
+    deactivateButton(currentMode);
     activateButton(newMode);
     currentMode = newMode;
 }
 
-function changeGrideSize(value) {
+function changeGridSize(value) {
     setCurrentSize(value);
     updateSizeValue(value);
     reloadGrid();
 }
 
+function clearGrid() {
+    const gridElements = grid.querySelectorAll('.grid-element');
+    gridElements.forEach(element => {
+        element.style.backgroundColor = '#fefefe';
+    });
+}
+
+
 function reloadGrid() {
     clearGrid();
     setupGrid(currentSize);
-}
-
-function clearGrid() {
-    grid.innerHTML = ''
 }
 
 function updateSizeValue(value) {
@@ -74,38 +86,32 @@ function setupGrid(size) {
 }
 
 function changeColor(event) {
-    if (event.type === 'mouseover' && !mouseDown) return
-    if (currentMode === 'random') {
-        const randomR = Math.floor(Math.random() * 256)
-        const randomG = Math.floor(Math.random() * 256)
-        const randomB = Math.floor(Math.random() * 256)
-        event.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
-    } else if (currentMode === 'color') {
-        event.target.style.backgroundColor = currentColor
-    } else if (currentMode === 'eraser') {
-        event.target.style.backgroundColor = '#fefefe'
+    if (event.type === 'mouseover' && !mouseDown) return;
+    switch (currentMode) {
+        case 'random':
+            const randomR = Math.floor(Math.random() * 256);
+            const randomG = Math.floor(Math.random() * 256);
+            const randomB = Math.floor(Math.random() * 256);
+            event.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`;
+            break;
+        case 'color':
+            event.target.style.backgroundColor = currentColor;
+            break;
+        case 'eraser':
+            event.target.style.backgroundColor = '#fefefe';
+            break;
     }
 }
 
-function activateButton(newMode) {
-    if (currentMode === 'random') {
-        randomButton.classList.remove('active')
-    } else if (currentMode === 'color') {
-      colorButton.classList.remove('active')
-    } else if (currentMode === 'eraser') {
-      eraser.classList.remove('active')
-    }
-  
-    if (newMode === 'random') {
-        randomButton.classList.add('active')
-    } else if (newMode === 'color') {
-        colorButton.classList.add('active')
-    } else if (newMode === 'eraser') {
-        eraser.classList.add('active')
-    }
-  }
+function activateButton(mode) {
+    modeButtonMap[mode].classList.add('active');
+}
+
+function deactivateButton(mode) {
+    modeButtonMap[mode].classList.remove('active');
+}
 
 window.onload = () => {
-    setupGrid(defaultGridSize)
-    activateButton(defaultGridMode)
+    setupGrid(defaultGridSize);
+    activateButton(defaultGridMode);
 }
