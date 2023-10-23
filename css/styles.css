@@ -26,6 +26,11 @@ input {
     width: 100%;
 }
 
+footer {
+    text-align: center;
+    padding-top: 10%;
+}
+
 .container {
     display: flex;
     flex-direction: row;
