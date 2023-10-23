@@ -3,9 +3,32 @@
     padding: 0;
 }
 
+body {
+    background-color:darkgrey;
+}
+
 h1 {
     text-align: center;
     font-size: 4rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+button {
+    padding: 2%;
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    background-color: white;
+}
+
+input {
+    width: 100%;
+}
+
+footer {
+    text-align: center;
+    padding-top: 10%;
 }
 
 .container {
@@ -18,14 +41,30 @@ h1 {
 .user-settings {
     display: flex;
     flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    width: 25%;
+    gap: 15px;
 }
 
-.color-input {
+#colorSelection {
     border-radius: 20px;
+    padding: 2%;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+}
+
+#sizeValue {
+    margin: auto;
+    padding: 2px;
+    font-size: 1.5rem;
 }
 
 .container-grid {
     display: grid;
     width: 500px;
     height: 500px;
+    background-color: white;
+    border: 10px ridge black;
 }
