@@ -2,3 +2,30 @@
     margin: 0;
     padding: 0;
 }
+
+h1 {
+    text-align: center;
+    font-size: 4rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.user-settings {
+    display: flex;
+    flex-direction: column;
+}
+
+.color-input {
+    border-radius: 20px;
+}
+
+.container-grid {
+    display: grid;
+    width: 500px;
+    height: 500px;
+}
