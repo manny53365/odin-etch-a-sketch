@@ -8,16 +8,16 @@ h1 {
     font-size: 4rem;
 }
 
-footer {
+/* footer {
     margin-top: 2%;
-}
+} */
 
 .container-grid {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    /* flex-direction: row;
     align-items: center;
-    justify-content: center;
-    margin: 2% auto;
+    justify-content: center; */
+    margin: auto;
     width: 500px;
     height: 500px;
 }
